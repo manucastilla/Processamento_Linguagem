@@ -1,8 +1,4 @@
-# Corretor ortográfico
+# Projetos de processamento natural
 
-### Feito por: Manuela Castilla Russo Correa e  Nicolas Barbosa Stegmann
-
-## Objetivo do programa:
-Construção de um corretor ortográfico que identifica se uma palavra em um texto está errada.
-
+## duplas: Nicolas Stegmann e Manuela Castilla
 
