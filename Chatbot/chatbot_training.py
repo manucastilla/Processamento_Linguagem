@@ -36,7 +36,6 @@ def model_train(df):
 
     countsTest = vectorizer.transform(X_test)
 
-    # ou sera que um cross val é melhor?
     y_pred = model.predict(countsTest)
     # acc = accuracy_score(y_test, y_pred)
     return model, vectorizer

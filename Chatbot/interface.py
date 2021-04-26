@@ -45,9 +45,9 @@ def pegar_clima():
 
 def pegar_ar(ar):
     if ar:
-        print("Luz acessa")
+        print("ar ligado")
     else:
-        print("Luz apagada")
+        print("ar desligado")
 
 
 def pegar_luz(luz):
@@ -96,9 +96,10 @@ def main():
 
     with open("model_geral.sav", "rb") as f:
         vectorizer, model = pickle.load(f)
-        luz = randint(0, 2)
-        ar = randint(0, 2)
-        conta = randint(0, 7_000)
+
+    luz = randint(0, 2)
+    ar = randint(0, 2)
+    conta = randint(0, 7_000)
 
     intencoes = model.classes_
     # print(intencoes)
@@ -121,8 +122,6 @@ def main():
             print(y_pred[0])
         else:
             print("", end="")
-
-        # counts y_pred[0]
 
         if y_pred[0] == "Obter informações relativas ao clima":
             pegar_clima()
