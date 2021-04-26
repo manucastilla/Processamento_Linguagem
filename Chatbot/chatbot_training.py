@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
+import pickle
 
 
 def limpa_tudo(df):
@@ -18,10 +19,7 @@ def limpa_tudo(df):
     return df
 
 
-def main():
-
-    # lendo o excel
-    df = pd.read_excel("sentencas.xlsx")
+def model_train(df):
 
     # limpando o dataset
     df["Sentença"] = df["Sentença"].apply(limpa_tudo)
@@ -38,10 +36,22 @@ def main():
 
     countsTest = vectorizer.transform(X_test)
 
+    # ou sera que um cross val é melhor?
     y_pred = model.predict(countsTest)
-    acc = accuracy_score(y_test, y_pred)
-    return acc
+    # acc = accuracy_score(y_test, y_pred)
+    return model, vectorizer
+
+
+def main():
+
+    # lendo o excel
+    df = pd.read_excel("sentencas.xlsx")
+
+    model, vectorizer = model_train(df)
+
+    with open("model_geral.sav", "wb") as f:
+        pickle.dump((vectorizer, model), f)
 
 
 if __name__ == "__main__":
-    print(main())
+    main()
