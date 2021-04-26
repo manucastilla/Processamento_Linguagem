@@ -139,8 +139,10 @@ def main():
 
                 if int(a_l) == 1:
                     pegar_luz(luz)
+                    break
                 elif int(a_l) == 2:
                     pegar_ar(ar)
+                    break
 
         elif y_pred[0] == "Consultar saldo da conta":
             pegar_conta(conta)
