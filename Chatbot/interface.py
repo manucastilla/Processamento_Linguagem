@@ -35,7 +35,7 @@ def pegar_clima():
     cidade = input("Em qual cidade você está?")
     cidade = str(cidade)
     x = requests.get(
-        'http://api.openweathermap.org/data/2.5/weather?q=Campinas&appid=1fe702bf6d43115c44bd4cb68f759de6')
+        'http://api.openweathermap.org/data/2.5/weather?q='+cidade+'&appid=1fe702bf6d43115c44bd4cb68f759de6')
     json_obj = x.json()
     temp_k = json_obj['main']['temp']
     temp = (temp_k - 273.15)
