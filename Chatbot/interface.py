@@ -6,6 +6,8 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
 import re
 from random import randint
+import requests
+import json
 
 
 def perguntar_usuario(sim):
@@ -30,17 +32,17 @@ def limpa_tudo(df):
 
 
 def pegar_clima():
-    temp = randint(-5, 33)
-    clima = randint(1, 4)
+    cidade = input("Em qual cidade você está?")
+    cidade = str(cidade)
+    x = requests.get(
+        'http://api.openweathermap.org/data/2.5/weather?q=Campinas&appid=1fe702bf6d43115c44bd4cb68f759de6')
+    json_obj = x.json()
+    temp_k = json_obj['main']['temp']
+    temp = (temp_k - 273.15)
+    weather = json_obj['weather'][0]["description"]
 
-    if clima == 1:
-        c = "chovendo"
-    elif clima == 2:
-        c = "nublado"
-    else:
-        c = "ensolarado"
-
-    print(f"Hoje está {c} e a temperatura do dia está em torno de {temp}°C!")
+    print(
+        f"A descrição do dia é {weather} e a temperatura do dia está em torno de {temp}°C!")
 
 
 def pegar_ar(ar):
