@@ -23,7 +23,7 @@ def limpa_tudo(df):
     # removendo minusculas
     df = df.lower()
     # remove todos os símbolos
-    df = re.sub(r"\W", " ", df)
+    df = re.sub(r"[^$\w\s]", "", df)
     # tirar o foxbot
     df = df.replace("foxbot", "")
     return df
@@ -40,9 +40,10 @@ def pegar_clima():
     temp_k = json_obj['main']['temp']
     temp = (temp_k - 273.15)
     weather = json_obj['weather'][0]["description"]
+    temp_ = round(int(temp), 2)
 
     print(
-        f"A descrição do dia é {weather} e a temperatura do dia está em torno de {temp}°C!")
+        f"A descrição do dia é {weather} e a temperatura do dia está em torno de {temp_}°C!")
 
 
 def pegar_ar(ar):
@@ -94,6 +95,7 @@ def main():
     print("1. Saber do clima")
     print("2. Saber do ar ou luz")
     print("3. Saber do saldo da conta")
+    print("-- se deseja sair, digite adeus! --")
     print(" ")
 
     with open("model_geral.sav", "rb") as f:
@@ -109,9 +111,9 @@ def main():
     while True:
         inputUsuario = perguntar_usuario(1)
         print(" ")
-        inputUsuario = limpa_tudo(inputUsuario)
+        inputUsuario_ = limpa_tudo(inputUsuario)
 
-        if inputUsuario == "adeus":
+        if inputUsuario_ == "adeus":
             print("*"*30)
             print("Obrigado por vir falar comigo :)")
             print("*"*30)
